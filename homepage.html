@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Visionary Vibe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: #000;
+  overflow-x: hidden;
+  padding-top: 90px; /* Adjusted for small space */
+}
+
+header {
+  background: linear-gradient(135deg, #0f2e35 0%, #1f4a55 100%);
+  color: white;
+  padding: 10px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  height: 90px; /* Adjusted for small space */
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.college-logo {
+  width: 80px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.facepreplogo {
+  width: 180px;
+  height: 70px;
+  object-fit: contain;
+}
+
+.logo img {
+  object-fit: contain;
+}
+
+.logo-text {
+  font-size: 20px;
+  line-height: 2.0;
+  font-weight: 750;
+}
+
+.logo-text strong {
+  color: #ffef5b;
+  font-size: 20px;
+}
+
+.nav-desktop {
+  display: flex;
+  gap: 5px;
+}
+
+.nav-desktop a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.nav-desktop a:hover {
+  background: #ffeb3b;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 235, 59, 0.3);
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  width: 30px;
+  height: 25px;
+  justify-content: space-between;
+}
+
+.menu-toggle span {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 3px;
+  transition: 0.3s;
+}
+
+.nav-mobile {
+  display: none;
+  position: fixed;
+  top: 90px; /* Adjusted to match header height */
+  left: 0;
+  width: 100%;
+  background: linear-gradient(135deg, #0f2e35 0%, #1f4a55 100%);
+  flex-direction: column;
+  padding: 20px;
+  z-index: 999;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-mobile.active {
+  display: flex;
+}
+
+.nav-mobile a {
+  color: white;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  transition: 0.3s;
+  margin-bottom: 8px;
+  border-left: 3px solid transparent;
+}
+
+/* FIXED: Changed from fa-phone-alt to fa-phone and fixed rotation */
+.fa-phone {
+  display: inline-block;
+  transform: rotate(0deg) !important;
+  -webkit-transform: rotate(0deg) !important;
+  margin-top: 1px;
+}
+
+.nav-mobile a:hover {
+  background: rgba(255, 235, 59, 0.2);
+  border-left: 3px solid #ffeb3b;
+  padding-left: 25px;
+}
+
+.title-container {
+  padding: 25px 20px 30px 20px; /* Added top padding for small space */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.title-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(255, 235, 59, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.title-img {
+  max-width: 800px;
+  width: 90%;
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  filter: drop-shadow(0 0 15px rgba(255, 235, 59, 0.3));
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.hero {
+  background: 
+    linear-gradient(rgba(10, 26, 31, 0.85), rgba(0, 0, 0, 0.9)),
+    url('visivibelogo.jpeg') center center;
+  background-size: cover;
+  background-attachment: fixed; /* This makes background sticky */
+  padding: 30px 0 60px 0;
+  position: relative;
+  min-height: 500px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(31, 74, 85, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 143, 163, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 30px;
+  position: relative;
+  z-index: 1;
+}
+
+.reminder {
+  color: white;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.reminder h2 {
+  color: #ff6f6f;
+  margin-bottom: 15px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reminder p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+.center-img {
+  text-align: center;
+  padding: 20px;
+}
+
+.center-img img {
+  width: 100%;
+  max-width: 400px;
+  opacity: 0.9;
+  /* Removed transition property */
+}
+
+.countdown {
+  display: flex;
+  justify-content: space-around;
+  color: #ff8fa3;
+  padding: 25px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 15px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.countdown div {
+  text-align: center;
+  padding: 10px;
+  flex: 1; /* Equal width for all boxes */
+}
+
+.countdown h1 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px rgba(255, 143, 163, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.countdown h1:hover {
+  transform: scale(1.1);
+}
+
+.countdown p {
+  font-size: 13px;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.about {
+  background: linear-gradient(180deg, #fff 0%, #f5f5f5 100%);
+  padding: 70px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #ff6f6f, #ffeb3b, #1f4a55);
+}
+
+.about h2 {
+  margin-bottom: 10px;
+  font-size: 36px;
+  color: #1f4a55;
+  font-weight: 700;
+}
+
+.about span {
+  color: #ff8fa3;
+  font-size: 16px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+}
+
+.about p {
+  max-width: 900px;
+  margin: 25px auto;
+  color: #555;
+  line-height: 1.8;
+  font-size: 17px;
+  padding: 0 20px;
+}
+
+footer {
+  background: linear-gradient(135deg, #0f2e35 0%, #1f4a55 100%);
+  color: white;
+  text-align: center;
+  padding: 25px 14px;
+  font-size: 14px;
+  position: relative;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6f6f, #ffeb3b, #1f4a55);
+}
+
+@media (max-width: 1100px) {
+  .hero-container {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    gap: 30px;
+  }
+  
+  .reminder, .countdown {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .center-img img {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    padding: 10px 20px;
+    height: 85px; /* Adjusted for small space */
+  }
+  
+  body {
+    padding-top: 85px; /* Adjusted for small space */
+  }
+  
+  .nav-desktop {
+    display: none;
+  }
+  
+  .menu-toggle {
+    display: flex;
+  }
+  
+  .title-img {
+    width: 95%;
+  }
+  
+  .reminder h2 {
+    font-size: 22px;
+  }
+  
+  .countdown h1 {
+    font-size: 30px;
+  }
+  
+  .about h2 {
+    font-size: 28px;
+  }
+  
+  .about p {
+    font-size: 16px;
+  }
+  
+  .college-logo {
+    width: 70px;
+    height: 50px;
+  }
+  
+  .facepreplogo {
+    width: 120px;
+    height: 60px;
+  }
+  
+  .logo-text {
+    font-size: 15px;
+  }
+  
+  .nav-mobile {
+    top: 85px; /* Adjusted to match header height */
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-container {
+    padding: 0 15px;
+  }
+  
+  .reminder, .countdown {
+    padding: 20px;
+    max-width: 100%;
+  }
+  
+  .countdown {
+    display: flex;
+    flex-wrap: nowrap; /* Changed from wrap to nowrap for straight line */
+    justify-content: space-between;
+    gap: 8px; /* Reduced gap for better fit */
+  }
+  
+  .countdown div {
+    flex: 1;
+    min-width: 0; /* Allow flex items to shrink below content size */
+    padding: 5px; /* Reduced padding */
+  }
+  
+  .countdown h1 {
+    font-size: 20px; /* Reduced font size for mobile */
+    margin-bottom: 2px;
+  }
+  
+  .countdown p {
+    font-size: 10px; /* Reduced font size for mobile */
+    letter-spacing: 0.5px;
+  }
+  
+  .about {
+    padding: 50px 15px;
+  }
+  
+  .about h2 {
+    font-size: 24px;
+  }
+  
+  .logo {
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 8px;
+  }
+  
+   .college-logo {
+    width: 50px;
+    height: 40px;
+    flex-shrink: 0;
+  }
+  
+  .facepreplogo {
+    width: 90px;
+    height: 40px;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  
+  .logo-text {
+    font-size: 11px;
+    line-height: 1.3;
+    text-align: center;
+    flex: 1;
+    margin: 0 5px;
+    padding: 0;
+  }
+  
+  .logo-text strong {
+    color: #ffef5b;
+    font-size: 14px;
+    display: block;
+  }
+  
+  header {
+    height: 85px; /* Consistent height */
+    min-height: 85px;
+    padding: 10px 15px;
+  }
+  
+  body {
+    padding-top: 85px; /* Consistent padding */
+  }
+  
+  .nav-mobile {
+    top: 85px; /* Adjusted to match header height */
+  }
+  
+  .menu-toggle {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .title-container {
+    padding: 20px 20px 25px 20px; /* Adjusted for small space */
+  }
+  
+  /* Ensure fixed background works on mobile */
+  .hero {
+    background-attachment: scroll; /* Fixed background can be problematic on mobile */
+  }
+  
+  /* Fallback for mobile devices that don't support fixed background well */
+  @supports (-webkit-touch-callout: none) {
+    .hero {
+      background-attachment: fixed;
+    }
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    <img src="kamarj logo.png" alt="Kamaraj College" class="college-logo">
+    <img src="facelogo.png" alt="FACE Prep" class="facepreplogo">
+    
+    <div class="logo-text">
+      <strong>Visionary vibes </strong> 
+      <strong>2026</strong> 
+    </div>
+  </div>
+
+  <div class="nav-desktop">
+    <a href="homepage.html"><i class="fas fa-home"></i> Home</a>
+    <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+    <a href="index.html"><i class="fas fa-calendar-alt"></i> Event</a>
+    <a href="contactpage.html"><i class="fas fa-phone"></i> Contact</a>
+  </div>
+
+  <div class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<div class="nav-mobile" id="navMobile">
+  <a href="homepage.html"><i class="fas fa-home"></i> Home</a>
+  <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+  <a href="index.html"><i class="fas fa-calendar-alt"></i> Event</a>
+  <a href="contactpage.html"><i class="fas fa-phone"></i> Contact</a>
+</div>
+
+<section class="hero">
+<div class="title-container">
+  <img src="visi.jpeg" alt="Visionary Vibe" class="title-img">
+</div>
+
+
+  <div class="hero-container">
+
+    <div class="reminder">
+      <h2><i class="fas fa-bell"></i> Important Reminder</h2>
+      <p>Mark your calendars! The much-awaited Visionary Vibe event is scheduled for <strong>23 January 2026</strong>. Join us for a day of innovation, learning, and networking with industry experts.</p>
+    </div>
+
+    <div class="center-img">
+      <img src="visivibelogo-removebg-preview.png" alt="Phoenix Rising">
+    </div>
+
+    <div class="countdown">
+      <div>
+        <h1 id="days">00</h1>
+        <p>DAYS</p>
+      </div>
+      <div>
+        <h1 id="hours">00</h1>
+        <p>HOURS</p>
+      </div>
+      <div>
+        <h1 id="minutes">00</h1>
+        <p>MINUTES</p>
+      </div>
+      <div>
+        <h1 id="seconds">00</h1>
+        <p>SECONDS</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="about">
+  <h2>About FACEPrep Campus</h2>
+  <span>Dream • Define • Do</span>
+  <p>
+    FACE Prep is a leading placement-focused training company that empowers students
+    with industry-relevant skills, aptitude training, and real-world exposure.
+    Through structured learning paths, certifications, and mentorship,
+    FACE Prep Campus bridges the gap between education and employability.
+    We are committed to transforming students into industry-ready professionals.
+  </p>
+</section>
+
+<footer>
+  © 2025 Kamaraj College | FACE Prep Campus | Visionary Vibes Event | All Rights Reserved
+</footer>
+
+<script>
+const targetDate = new Date("January 23, 2026 00:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = targetDate - now;
+
+  if(diff <= 0) {
+    document.getElementById("days").innerText = "00";
+    document.getElementById("hours").innerText = "00";
+    document.getElementById("minutes").innerText = "00";
+    document.getElementById("seconds").innerText = "00";
+    return;
+  }
+
+  document.getElementById("days").innerText =
+    Math.floor(diff / (1000*60*60*24)).toString().padStart(2, '0');
+
+  document.getElementById("hours").innerText =
+    Math.floor((diff % (1000*60*60*24)) / (1000*60*60)).toString().padStart(2, '0');
+
+  document.getElementById("minutes").innerText =
+    Math.floor((diff % (1000*60*60)) / (1000*60)).toString().padStart(2, '0');
+
+  document.getElementById("seconds").innerText =
+    Math.floor((diff % (1000*60)) / 1000).toString().padStart(2, '0');
+}, 1000);
+
+const menuToggle = document.getElementById('menuToggle');
+const navMobile = document.getElementById('navMobile');
+
+menuToggle.addEventListener('click', () => {
+  navMobile.classList.toggle('active');
+  
+  const spans = menuToggle.querySelectorAll('span');
+  if(navMobile.classList.contains('active')) {
+    spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+  } else {
+    spans[0].style.transform = 'none';
+    spans[1].style.opacity = '1';
+    spans[2].style.transform = 'none';
+  }
+});
+
+document.addEventListener('click', (e) => {
+  if(!menuToggle.contains(e.target) && !navMobile.contains(e.target)) {
+    navMobile.classList.remove('active');
+    const spans = menuToggle.querySelectorAll('span');
+    spans[0].style.transform = 'none';
+    spans[1].style.opacity = '1';
+    spans[2].style.transform = 'none';
+  }
+});
+</script>
+
+</body>
+
+</html>
+
